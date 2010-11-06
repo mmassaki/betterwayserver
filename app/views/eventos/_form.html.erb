@@ -1,0 +1,41 @@
+<%= form_for(@evento) do |f| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
+
+      <ul>
+      <% @evento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :data_hora %><br />
+    <%= f.datetime_select :data_hora %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :foto %><br />
+    <%= f.text_field :foto %>
+  </div>
+  <div class="field">
+    <%= f.label :evento_tipo_id %><br />
+    <%= f.text_field :evento_tipo_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

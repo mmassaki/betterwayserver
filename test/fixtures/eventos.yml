@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  latitude: 9.99
+  longitude: 9.99
+  data_hora: 2010-09-16 16:06:30
+  descricao: MyString
+  foto: 
+  evento_tipo_id: 1
+
+two:
+  latitude: 9.99
+  longitude: 9.99
+  data_hora: 2010-09-16 16:06:30
+  descricao: MyString
+  foto: 
+  evento_tipo_id: 1
