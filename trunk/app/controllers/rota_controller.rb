@@ -15,20 +15,18 @@ class RotaController < ApplicationController
   end
   
   def tracar
-    origem = params[:origem].split(',')
-    destino = params[:destino].split(',')
-    
-    if (origem.size != 2 or destino.size != 2)
-      render :text => 'Coordenads invalidas'
-      return
-    end
+    origem = params[:origem]
+    destino = params[:destino]
     
     url = URI.parse('http://maps.googleapis.com')
     http = Net::HTTP.new(url.host, url.port)
-    resp = http.get("/maps/api/directions/json?origin=#{origem}&destination=#{destino}&sensor=false")    
-    p origem
-    p destino
+    resp = http.get("/maps/api/directions/json?origin=#{origem}&destination=#{destino}&sensor=false")
     json = ActiveSupport::JSON.decode(resp.body)
+    
+    if json["routes"].size.zero?
+      render :text => "Nenhuma rota encontrada"
+      return
+    end
     
     polyline = json["routes"][0]["overview_polyline"]["points"]
     
