@@ -34,6 +34,6 @@ production:
   reconnect: false
   database: th49979_betterway
   pool: 5
-  username: bway
+  username: th49979_bway
   password: TCCBetterWay123
   socket: /tmp/mysql.sock
