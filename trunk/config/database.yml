@@ -32,8 +32,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: better_way_production
+  database: th49979_betterway
   pool: 5
-  username: root
-  password:
+  username: bway
+  password: TCCBetterWay123
   socket: /tmp/mysql.sock
