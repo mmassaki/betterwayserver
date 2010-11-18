@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @registro.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @registro.longitude %>
+</p>
+
+<p>
+  <b>Via:</b>
+  <%= @registro.via %>
+</p>
+
+<p>
+  <b>Velocidade:</b>
+  <%= @registro.velocidade %>
+</p>
+
+<p>
+  <b>Data hora:</b>
+  <%= @registro.data_hora %>
+</p>
+
+<p>
+  <b>Dispositivo:</b>
+  <%= @registro.dispositivo_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_registro_path(@registro) %> |
+<%= link_to 'Back', registros_path %>

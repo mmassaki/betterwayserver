@@ -1,0 +1,33 @@
+<h1>Listing registros</h1>
+
+<table>
+  <tr>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Via</th>
+    <th>Velocidade</th>
+    <th>Data hora</th>
+    <th>Dispositivo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registros.each do |registro| %>
+  <tr>
+    <td><%= registro.latitude %></td>
+    <td><%= registro.longitude %></td>
+    <td><%= registro.via %></td>
+    <td><%= registro.velocidade %></td>
+    <td><%= registro.data_hora %></td>
+    <td><%= registro.dispositivo_id %></td>
+    <td><%= link_to 'Show', registro %></td>
+    <td><%= link_to 'Edit', edit_registro_path(registro) %></td>
+    <td><%= link_to 'Destroy', registro, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Registro', new_registro_path %>
