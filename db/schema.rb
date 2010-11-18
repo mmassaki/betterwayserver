@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100916190629) do
+ActiveRecord::Schema.define(:version => 20101109203034) do
 
   create_table "evento_tipos", :force => true do |t|
     t.string   "nome"
@@ -20,12 +20,24 @@ ActiveRecord::Schema.define(:version => 20100916190629) do
   end
 
   create_table "eventos", :force => true do |t|
-    t.decimal  "latitude",       :precision => 10, :scale => 0
-    t.decimal  "longitude",      :precision => 10, :scale => 0
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "data_hora"
     t.string   "descricao"
     t.binary   "foto"
     t.integer  "evento_tipo_id"
+    t.boolean  "ativo",          :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registros", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "via"
+    t.float    "velocidade"
+    t.datetime "data_hora"
+    t.integer  "dispositivo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

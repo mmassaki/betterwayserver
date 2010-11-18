@@ -1,12 +1,27 @@
 class EventosController < ApplicationController
+  
+  DIST_LAT = 0.01
+  DIST_LONG = 0.01
+  
   # GET /eventos
   # GET /eventos.xml
   def index
-    @eventos = Evento.all
-
+    
+    lat = params[:latitude].to_f
+    long = params[:longitude].to_f
+    delta_lat = params[:delta_latitude].to_f + DIST_LAT
+    delta_long = params[:delta_longitude].to_f + DIST_LONG
+    
+    if !lat.zero? || !long.zero?
+      @eventos = Evento.where({:ativo => true, :latitude => (lat - delta_lat)..(lat + delta_lat), :longitude => (long - delta_long)..(long + delta_long)})  
+    end
+    
     respond_to do |format|
-      format.html # index.html.erb
+      format.html do # index.html.erb
+        @eventos = Evento.all
+      end
       format.xml  { render :xml => @eventos }
+      format.json { render :json => @eventos }
     end
   end
 

@@ -1,0 +1,41 @@
+<%= form_for(@registro) do |f| %>
+  <% if @registro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registro.errors.count, "error") %> prohibited this registro from being saved:</h2>
+
+      <ul>
+      <% @registro.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :via %><br />
+    <%= f.text_field :via %>
+  </div>
+  <div class="field">
+    <%= f.label :velocidade %><br />
+    <%= f.text_field :velocidade %>
+  </div>
+  <div class="field">
+    <%= f.label :data_hora %><br />
+    <%= f.datetime_select :data_hora %>
+  </div>
+  <div class="field">
+    <%= f.label :dispositivo_id %><br />
+    <%= f.text_field :dispositivo_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,6 @@
 BetterWay::Application.routes.draw do
+  resources :registros
+
   resources :eventos
 
   resources :evento_tipos
