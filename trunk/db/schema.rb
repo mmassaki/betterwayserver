@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20101109203034) do
     t.string   "descricao"
     t.binary   "foto"
     t.integer  "evento_tipo_id"
+    t.integer  "dispositivo_id"
     t.boolean  "ativo",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
