@@ -5,6 +5,7 @@ class EventosController < ApplicationController
   
   # GET /eventos
   # GET /eventos.xml
+  # GET /eventos.json
   def index
     
     lat = params[:latitude].to_f
@@ -54,6 +55,7 @@ class EventosController < ApplicationController
 
   # POST /eventos
   # POST /eventos.xml
+  # POST /eventos.json
   def create
     @evento = Evento.new(params[:evento])
 
@@ -61,9 +63,11 @@ class EventosController < ApplicationController
       if @evento.save
         format.html { redirect_to(@evento, :notice => 'Evento was successfully created.') }
         format.xml  { render :xml => @evento, :status => :created, :location => @evento }
+        format.json { render :json => @evento, :status => :created, :location => @evento }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @evento.errors, :status => :unprocessable_entity }
+        format.json { render :json => @evento.errors, :status => :unprocessable_entity }
       end
     end
   end
