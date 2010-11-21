@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20101109203034) do
     t.float    "longitude"
     t.datetime "data_hora"
     t.string   "descricao"
-    t.binary   "foto"
+    t.binary   "foto",           :limit => 16777215
     t.integer  "evento_tipo_id"
-    t.integer  "dispositivo_id"
-    t.boolean  "ativo",          :default => true
+    t.string   "dispositivo_id"
+    t.boolean  "ativo",                              :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20101109203034) do
     t.string   "via"
     t.float    "velocidade"
     t.datetime "data_hora"
-    t.integer  "dispositivo_id"
+    t.string   "dispositivo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
