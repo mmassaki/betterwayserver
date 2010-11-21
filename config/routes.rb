@@ -1,10 +1,12 @@
 BetterWay::Application.routes.draw do
+  
   resources :registros
-
   resources :eventos
-
   resources :evento_tipos
-
+  
+  match 'eventos/foto/:id' => 'eventos#foto'
+  match 'rota(/:action)' => 'rota'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -60,5 +62,5 @@ BetterWay::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id(.:format)))'
 end

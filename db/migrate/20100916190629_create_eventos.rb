@@ -7,7 +7,7 @@ class CreateEventos < ActiveRecord::Migration
       t.string :descricao
       t.binary :foto
       t.integer :evento_tipo_id
-      t.integer :dispositivo_id
+      t.string :dispositivo_id
       t.boolean :ativo, :default => true
 
       t.timestamps

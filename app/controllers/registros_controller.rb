@@ -41,6 +41,7 @@ class RegistrosController < ApplicationController
   # POST /registros.xml
   def create
     @registro = Registro.new(params[:registro])
+    @registro.data_hora = Time.now if @registro.data_hora.nil?
 
     respond_to do |format|
       if @registro.save

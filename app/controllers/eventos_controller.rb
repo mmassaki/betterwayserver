@@ -15,12 +15,12 @@ class EventosController < ApplicationController
     
     if !lat.zero? || !long.zero?
       @eventos = Evento.where({:ativo => true, :latitude => (lat - delta_lat)..(lat + delta_lat), :longitude => (long - delta_long)..(long + delta_long)})  
+    else
+      @eventos = Evento.all
     end
     
     respond_to do |format|
-      format.html do # index.html.erb
-        @eventos = Evento.all
-      end
+      format.html # index.html.erb
       format.xml  { render :xml => @eventos }
       format.json { render :json => @eventos }
     end
@@ -58,6 +58,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(params[:evento])
+    @evento.data_hora = Time.now if @evento.data_hora.nil?
 
     respond_to do |format|
       if @evento.save
@@ -98,5 +99,10 @@ class EventosController < ApplicationController
       format.html { redirect_to(eventos_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def foto
+    evento = Evento.find(params[:id])
+    render :text => evento.foto
   end
 end
