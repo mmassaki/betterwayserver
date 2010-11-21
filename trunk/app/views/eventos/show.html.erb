@@ -22,7 +22,7 @@
 
 <p>
   <b>Foto:</b>
-  <%= @evento.foto %>
+  <%= link_to 'Foto', :action => 'foto', :id => @evento if !@evento.foto.nil? %>
 </p>
 
 <p>
