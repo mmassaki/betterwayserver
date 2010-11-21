@@ -104,6 +104,6 @@ class EventosController < ApplicationController
   
   def foto
     evento = Evento.find(params[:id])
-    send_data evento.foto
+    send_data evento.foto, :type => 'image', :disposition => 'inline'
   end
 end

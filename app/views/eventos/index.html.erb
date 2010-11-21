@@ -21,7 +21,7 @@
     <td><%= evento.longitude %></td>
     <td><%= evento.data_hora %></td>
     <td><%= evento.descricao %></td>
-    <td><%= evento.foto %></td>
+    <td><%= link_to 'Foto', :action => 'foto', :id => evento if !evento.foto.nil? %></td>
     <td><%= evento.evento_tipo_id %></td>
     <td><%= evento.dispositivo_id %></td>
     <td><%= evento.ativo %></td>
