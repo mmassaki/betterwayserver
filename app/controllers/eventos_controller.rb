@@ -20,7 +20,7 @@ class EventosController < ApplicationController
     end
     
     @eventos.each do |evento|
-      evento.foto = url_for :action => 'foto', :id => evento if !evento.foto.nil?
+      trocar_foto_por_url evento
     end
     
     respond_to do |format|
@@ -67,6 +67,7 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
+        trocar_foto_por_url @evento
         format.html { redirect_to(@evento, :notice => 'Evento was successfully created.') }
         format.xml  { render :xml => @evento, :status => :created, :location => @evento }
         format.json { render :json => @evento, :status => :created, :location => @evento }
@@ -111,3 +112,10 @@ class EventosController < ApplicationController
     send_data evento.foto, :type => 'image', :disposition => 'inline'
   end
 end
+
+#-------------------------------
+private
+
+  def trocar_foto_por_url(evento)
+    evento.foto = url_for :action => 'foto', :id => evento if !evento.foto.nil?
+  end
