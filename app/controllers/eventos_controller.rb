@@ -59,6 +59,7 @@ class EventosController < ApplicationController
   def create
     @evento = Evento.new(params[:evento])
     @evento.data_hora = Time.now if @evento.data_hora.nil?
+    @evento.foto = @evento.foto.read if !@evento.foto.nil?
 
     respond_to do |format|
       if @evento.save
@@ -103,6 +104,6 @@ class EventosController < ApplicationController
   
   def foto
     evento = Evento.find(params[:id])
-    render :text => evento.foto
+    send_data evento.foto
   end
 end
