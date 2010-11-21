@@ -6,7 +6,7 @@ class CreateRegistros < ActiveRecord::Migration
       t.string :via
       t.float :velocidade
       t.datetime :data_hora
-      t.integer :dispositivo_id
+      t.string :dispositivo_id
 
       t.timestamps
     end
