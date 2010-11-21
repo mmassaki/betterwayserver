@@ -19,6 +19,10 @@ class EventosController < ApplicationController
       @eventos = Evento.all
     end
     
+    @eventos.each do |evento|
+      evento.foto = url_for :action => 'foto', :id => evento if !evento.foto.nil?
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @eventos }
