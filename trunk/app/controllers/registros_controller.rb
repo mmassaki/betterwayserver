@@ -39,6 +39,7 @@ class RegistrosController < ApplicationController
 
   # POST /registros
   # POST /registros.xml
+  # POST /registros.json
   def create
     @registro = Registro.new(params[:registro])
     @registro.data_hora = Time.now if @registro.data_hora.nil?
@@ -47,9 +48,11 @@ class RegistrosController < ApplicationController
       if @registro.save
         format.html { redirect_to(@registro, :notice => 'Registro was successfully created.') }
         format.xml  { render :xml => @registro, :status => :created, :location => @registro }
+        format.json { render :json => @registro, :status => :created, :location => @registro }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @registro.errors, :status => :unprocessable_entity }
+        format.json { render :json => @registro.errors, :status => :unprocessable_entity }
       end
     end
   end
