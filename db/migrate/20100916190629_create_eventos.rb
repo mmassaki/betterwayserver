@@ -5,7 +5,7 @@ class CreateEventos < ActiveRecord::Migration
       t.float :longitude
       t.datetime :data_hora
       t.string :descricao
-      t.binary :foto
+      t.binary :foto, :limit => 16777215
       t.integer :evento_tipo_id
       t.string :dispositivo_id
       t.boolean :ativo, :default => true
