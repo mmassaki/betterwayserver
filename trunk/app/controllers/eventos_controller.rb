@@ -118,8 +118,4 @@ class EventosController < ApplicationController
     evento.foto = url_for :action => 'foto', :id => evento if !evento.foto.nil?
   end
 
-  def atualizar
-    Evento.update_all({:ativo => false}, ["data_hora < ?", Time.now - 30.minutes])
-  end
-
 end
