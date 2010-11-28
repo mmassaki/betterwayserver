@@ -62,7 +62,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(params[:evento])
-    @evento.data_hora = Time.now if @evento.data_hora.nil?
+    @evento.data_hora = Time.now
     @evento.foto = @evento.foto.read if !@evento.foto.nil?
 
     respond_to do |format|
