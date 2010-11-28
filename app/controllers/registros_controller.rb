@@ -42,7 +42,7 @@ class RegistrosController < ApplicationController
   # POST /registros.json
   def create
     @registro = Registro.new(params[:registro])
-    @registro.data_hora = Time.now if @registro.data_hora.nil?
+    @registro.data_hora = Time.now
 
     respond_to do |format|
       if @registro.save
