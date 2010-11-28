@@ -111,11 +111,15 @@ class EventosController < ApplicationController
     evento = Evento.find(params[:id])
     send_data evento.foto, :type => 'image', :disposition => 'inline'
   end
-end
-
-#-------------------------------
-private
+  
+  private #-------------------------------
 
   def trocar_foto_por_url(evento)
     evento.foto = url_for :action => 'foto', :id => evento if !evento.foto.nil?
   end
+
+  def atualizar
+    Evento.update_all({:ativo => false}, ["data_hora < ?", Time.now - 30.minutes])
+  end
+
+end
