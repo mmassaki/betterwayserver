@@ -1,9 +1,9 @@
 BetterWay::Application.routes.draw do
   
+  resources :transitos
+
   resources :registros
-  resources :eventos
-  resources :evento_tipos
-  
+  resources :eventos  
   match 'eventos/foto/:id' => 'eventos#foto'
   match 'rota(/:action)' => 'rota'
   

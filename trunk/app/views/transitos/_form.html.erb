@@ -1,0 +1,77 @@
+<%= form_for(@transito) do |f| %>
+  <% if @transito.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transito.errors.count, "error") %> prohibited this transito from being saved:</h2>
+
+      <ul>
+      <% @transito.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :latitude_ponto1 %><br />
+    <%= f.text_field :latitude_ponto1 %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude_ponto1 %><br />
+    <%= f.text_field :longitude_ponto1 %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude_ponto2 %><br />
+    <%= f.text_field :latitude_ponto2 %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude_ponto2 %><br />
+    <%= f.text_field :longitude_ponto2 %>
+  </div>
+  <div class="field">
+    <%= f.label :polyline %><br />
+    <%= f.text_field :polyline %>
+  </div>
+  <div class="field">
+    <%= f.label :via %><br />
+    <%= f.text_field :via %>
+  </div>
+  <div class="field">
+    <%= f.label :via_num %><br />
+    <%= f.text_field :via_num %>
+  </div>
+  <div class="field">
+    <%= f.label :bairro %><br />
+    <%= f.text_field :bairro %>
+  </div>
+  <div class="field">
+    <%= f.label :cidade %><br />
+    <%= f.text_field :cidade %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br />
+    <%= f.text_field :estado %>
+  </div>
+  <div class="field">
+    <%= f.label :pais %><br />
+    <%= f.text_field :pais %>
+  </div>
+  <div class="field">
+    <%= f.label :cep %><br />
+    <%= f.text_field :cep %>
+  </div>
+  <div class="field">
+    <%= f.label :intensidade %><br />
+    <%= f.text_field :intensidade %>
+  </div>
+  <div class="field">
+    <%= f.label :reportado %><br />
+    <%= f.text_field :reportado %>
+  </div>
+  <div class="field">
+    <%= f.label :ativo %><br />
+    <%= f.check_box :ativo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
