@@ -1,0 +1,51 @@
+<h1>Listing transitos</h1>
+
+<table>
+  <tr>
+    <th>Latitude ponto1</th>
+    <th>Longitude ponto1</th>
+    <th>Latitude ponto2</th>
+    <th>Longitude ponto2</th>
+    <th>Polyline</th>
+    <th>Via</th>
+    <th>Via num</th>
+    <th>Bairro</th>
+    <th>Cidade</th>
+    <th>Estado</th>
+    <th>Pais</th>
+    <th>Cep</th>
+    <th>Intensidade</th>
+    <th>Reportado</th>
+    <th>Ativo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transitos.each do |transito| %>
+  <tr>
+    <td><%= transito.latitude_ponto1 %></td>
+    <td><%= transito.longitude_ponto1 %></td>
+    <td><%= transito.latitude_ponto2 %></td>
+    <td><%= transito.longitude_ponto2 %></td>
+    <td><%= transito.polyline %></td>
+    <td><%= transito.via %></td>
+    <td><%= transito.via_num %></td>
+    <td><%= transito.bairro %></td>
+    <td><%= transito.cidade %></td>
+    <td><%= transito.estado %></td>
+    <td><%= transito.pais %></td>
+    <td><%= transito.cep %></td>
+    <td><%= transito.intensidade %></td>
+    <td><%= transito.reportado %></td>
+    <td><%= transito.ativo %></td>
+    <td><%= link_to 'Show', transito %></td>
+    <td><%= link_to 'Edit', edit_transito_path(transito) %></td>
+    <td><%= link_to 'Destroy', transito, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transito', new_transito_path %>

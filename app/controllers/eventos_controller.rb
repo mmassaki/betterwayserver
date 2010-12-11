@@ -26,7 +26,7 @@ class EventosController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @eventos }
-      format.json { render :json => @eventos }
+      format.json { render :json => @eventos, :except => [:data_hora, :created_at, :updated_at, :dispositivo_id, :ativo] }
     end
   end
 

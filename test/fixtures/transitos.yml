@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  latitude_ponto1: 1.5
+  longitude_ponto1: 1.5
+  latitude_ponto2: 1.5
+  longitude_ponto2: 1.5
+  polyline: MyString
+  via: MyString
+  via_num: MyString
+  bairro: MyString
+  cidade: MyString
+  estado: MyString
+  pais: MyString
+  cep: MyString
+  intensidade: 1
+  reportado: 1
+  ativo: false
+
+two:
+  latitude_ponto1: 1.5
+  longitude_ponto1: 1.5
+  latitude_ponto2: 1.5
+  longitude_ponto2: 1.5
+  polyline: MyString
+  via: MyString
+  via_num: MyString
+  bairro: MyString
+  cidade: MyString
+  estado: MyString
+  pais: MyString
+  cep: MyString
+  intensidade: 1
+  reportado: 1
+  ativo: false

@@ -1,6 +1,4 @@
 require 'polyline_decoder'
-require 'net/http'
-require 'uri'
 
 class RotaController < ApplicationController
   
@@ -10,7 +8,7 @@ class RotaController < ApplicationController
     
     url = URI.parse('http://maps.googleapis.com')
     http = Net::HTTP.new(url.host, url.port)
-    resp = http.get("/maps/api/directions/json?origin=#{origem}&destination=#{destino}&sensor=false")
+    resp = http.get("/maps/api/directions/json?origin=#{origem}&destination=#{destino}&sensor=true")
     json = ActiveSupport::JSON.decode(resp.body)
     
     if json["routes"].size.zero?
