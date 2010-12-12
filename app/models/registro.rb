@@ -37,10 +37,12 @@ class Registro < ActiveRecord::Base
         self.save
         p "Via encontrada"
         p self
-        Transito.informar self
-        break
+        
+        return true
       end
     end
+    
+    return false
   end
   
 end
