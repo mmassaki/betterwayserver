@@ -24,7 +24,6 @@ class TransitosController < ApplicationController
     end
     
     @transitos.each do |transito|
-      transito.polyline = ActiveSupport::JSON.decode(transito.polyline)
       transito.intensidade = transito.intensidade.round
     end
     

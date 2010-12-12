@@ -2,6 +2,8 @@ require 'polyline_decoder'
 
 class Transito < ActiveRecord::Base
   
+  serialize :polyline
+  
   VEL_1 = 10
   VEL_2 = 40
   VEL_3 = 60
@@ -45,7 +47,7 @@ class Transito < ActiveRecord::Base
       transito.longitude_ponto1 = leg["start_location"]["lng"]
       transito.latitude_ponto2 = leg["end_location"]["lat"]
       transito.longitude_ponto2 = leg["end_location"]["lng"]
-      transito.polyline = line_arr.to_json
+      transito.polyline = line_arr
       transito.via = registro.via
       transito.via_num = registro.via_num
       transito.bairro = registro.bairro
