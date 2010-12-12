@@ -46,9 +46,9 @@ class RegistrosController < ApplicationController
 
     respond_to do |format|
       if @registro.save
-        # Thread.new do
-          busca_via @registro
-        # end
+        Thread.new do
+          @registro.buscar_via
+        end
         format.html { redirect_to(@registro, :notice => 'Registro was successfully created.') }
         format.xml  { render :xml => @registro, :status => :created, :location => @registro }
         format.json { render :json => @registro, :status => :created, :location => @registro }
@@ -88,41 +88,4 @@ class RegistrosController < ApplicationController
     end
   end
 
-  private #--------------------------------------------
-  
-  def busca_via registro
-    latlng = "#{registro.latitude},#{registro.longitude}"
-    url = URI.parse('http://maps.googleapis.com')
-    http = Net::HTTP.new(url.host, url.port)
-    resp = http.get("/maps/api/geocode/json?latlng=#{latlng}&sensor=true")
-    json = ActiveSupport::JSON.decode(resp.body)
-    json["results"].each do |result|
-      if result["types"].include? "street_address"
-        result["address_components"].each do |node|
-          node["types"].each do |type|
-            case type
-            when "street_number"
-              registro.via_num = node["long_name"]
-            when "route"
-              registro.via = node["long_name"]
-            when "sublocality"
-              registro.bairro = node["long_name"]
-            when "locality"
-              registro.cidade = node["long_name"]
-            when "administrative_area_level_1"
-              registro.estado = node["long_name"]
-            when "country"
-              registro.pais = node["long_name"]
-            when "postal_code"
-              registro.cep = node["long_name"]
-            end
-          end
-        end
-        break
-      end
-    end
-    registro.save
-    Transito.informar registro
-  end
-  
 end
