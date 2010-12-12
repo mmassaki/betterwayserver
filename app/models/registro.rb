@@ -13,7 +13,6 @@ class Registro < ActiveRecord::Base
     end
     
     json["results"].each do |result|
-      p result["types"]
       if result["types"].include? "street_address"
         result["address_components"].each do |node|
           node["types"].each do |type|
@@ -36,6 +35,8 @@ class Registro < ActiveRecord::Base
           end
         end
         self.save
+        p "Via encontrada"
+        p self
         Transito.informar self
         break
       end
