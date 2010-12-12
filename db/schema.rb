@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20101211191412) do
     t.float    "longitude_ponto1"
     t.float    "latitude_ponto2"
     t.float    "longitude_ponto2"
-    t.string   "polyline"
+    t.text     "polyline"
     t.string   "via"
     t.string   "via_num"
     t.string   "bairro"
