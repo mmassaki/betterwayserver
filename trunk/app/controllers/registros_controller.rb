@@ -47,7 +47,9 @@ class RegistrosController < ApplicationController
     respond_to do |format|
       if @registro.save
         Thread.new do
-          @registro.buscar_via
+          if @registro.buscar_via
+            Transito.informar @registro
+          end
         end
         format.html { redirect_to(@registro, :notice => 'Registro was successfully created.') }
         format.xml  { render :xml => @registro, :status => :created, :location => @registro }
