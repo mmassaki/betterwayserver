@@ -29,6 +29,7 @@ class Transito < ActiveRecord::Base
       url = URI.parse('http://maps.googleapis.com')
       http = Net::HTTP.new(url.host, url.port)
       resp = http.get("/maps/api/directions/json?origin=#{origem}&destination=#{destino}&sensor=true")
+      p resp.body
       json = ActiveSupport::JSON.decode(resp.body)
     
       if json["routes"].size.zero?

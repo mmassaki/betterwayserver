@@ -5,6 +5,7 @@ class Registro < ActiveRecord::Base
     url = URI.parse('http://maps.googleapis.com')
     http = Net::HTTP.new(url.host, url.port)
     resp = http.get("/maps/api/geocode/json?latlng=#{latlng}&sensor=true")
+    p resp.body
     json = ActiveSupport::JSON.decode(resp.body)
     
     if json["results"].size.zero?

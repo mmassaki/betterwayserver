@@ -1,1 +1,1 @@
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * cd ~/better_way && rails runner -e production app/cron/atualizar_eventos.rb
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * cd ~/better_way && rails runner -e production lib/task/atualizar_bd.rb
