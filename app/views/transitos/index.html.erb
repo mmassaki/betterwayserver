@@ -17,6 +17,7 @@
     <th>Intensidade</th>
     <th>Reportado</th>
     <th>Ativo</th>
+    <th>Última atualização</th>
     <th></th>
     <th></th>
     <th></th>
@@ -39,6 +40,7 @@
     <td><%= transito.intensidade %></td>
     <td><%= transito.reportado %></td>
     <td><%= transito.ativo %></td>
+    <td><%= transito.updated_at %></td>
     <td><%= link_to 'Show', transito %></td>
     <td><%= link_to 'Edit', edit_transito_path(transito) %></td>
     <td><%= link_to 'Destroy', transito, :confirm => 'Are you sure?', :method => :delete %></td>
