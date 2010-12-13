@@ -2,7 +2,7 @@ require 'polyline_decoder'
 
 class RotaController < ApplicationController
   
-  DIST_TOLERANCE = 0.0001
+  DIST_TOLERANCE = 0.001
   
   def tracar
     origem = params[:origem]
@@ -33,36 +33,44 @@ class RotaController < ApplicationController
       rota["peso"] = 0
       
       for i in 1..line_arr.size-1 do
-        x = line_arr[i][0]
-        y = line_arr[i][1]
         x0 = line_arr[i-1][0]
         y0 = line_arr[i-1][1]
-        a = (y - y0)/(x - x0)
-        c = y - a*x
-        b = -1
+        x = line_arr[i][0]
+        y = line_arr[i][1]
+        a = y0 - y
+        b = x - x0
+        c = x0*y - x*y0
+        
+        x_range = (x0 < x)? x0..x : x..x0
+        y_range = (y0 < y)? y0..y : y..y0
         
         eventos.each do |evento|
-          dist = (a*evento.latitude + b*evento.longitude + c).abs/Math.sqrt(a**2 + b**2)
-          if dist < DIST_TOLERANCE
-            logger.info "Evento proximo da rota (#{evento.latitude}, #{evento.longitude})"
-            logger.info "distancia = #{dist}"
-            rota["peso"] += 2
+          if x_range.include?(evento.latitude) && y_range.include?(evento.longitude)
+            dist = ((a*evento.latitude + b*evento.longitude + c).abs) / (Math.sqrt(a**2 + b**2))
+            if dist <= DIST_TOLERANCE
+              logger.info "Evento proximo da rota (#{x0}, #{y0}) -> (#{x}, #{y})"
+              logger.info "coordenadas: (#{evento.latitude}, #{evento.longitude})"
+              logger.info "distancia = #{dist}"
+              rota["peso"] += 2
+            end
           end
         end
-        
+
         transitos.each do |transito|
-          dist1 = (a*transito.latitude_ponto1 + b*transito.longitude_ponto1 + c).abs/Math.sqrt(a**2 + b**2)
-          dist2 = (a*transito.latitude_ponto2 + b*transito.longitude_ponto2 + c).abs/Math.sqrt(a**2 + b**2)
-          if dist1 < DIST_TOLERANCE || dist2 < DIST_TOLERANCE
-            logger.info "Transito proximo da rota"
+          d11 = Math.sqrt((x0 - transito.latitude_ponto1)**2 + (y0 - transito.longitude_ponto1)**2)
+          d22 = Math.sqrt((x - transito.latitude_ponto2)**2 + (y - transito.longitude_ponto2)**2)
+          d12 = Math.sqrt((x0 - transito.latitude_ponto2)**2 + (y0 - transito.longitude_ponto2)**2)
+          d21 = Math.sqrt((x - transito.latitude_ponto1)**2 + (y - transito.longitude_ponto1)**2)
+          
+          if (d11 <= DIST_TOLERANCE && d22 <= DIST_TOLERANCE) || (d12 <= DIST_TOLERANCE && d21 <= DIST_TOLERANCE)
+            logger.info "Transito proximo da rota (#{x0}, #{y0}) -> (#{x}, #{y})"
             logger.info "ponto 1: (#{transito.latitude_ponto1}, #{transito.longitude_ponto1})"
             logger.info "ponto 2: (#{transito.latitude_ponto2}, #{transito.longitude_ponto2})"
             logger.info "intensidade = #{transito.intensidade}"
-            logger.info "distancia: ponto1 = #{dist1}, ponto2 = #{dist2}"
-            logger.debug "ROTA ponto inicial: (#{x}, #{y}), ponto final: (#{x0}, #{y0})"
             rota["peso"] += 4 - transito.intensidade.round
           end
         end
+        
       end
       
       logger.debug "Peso da rota = #{rota["peso"]}"
